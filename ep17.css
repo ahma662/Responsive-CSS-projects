@@ -1,0 +1,44 @@
+ul {
+    background-color: burlywood;
+    color: brown;
+    border-radius: 20px;
+    padding: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    line-height: 39px;
+}
+li{
+    list-style: none;
+    font-size: larger;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+img {
+    width: auto;
+    height: 300px;
+}
+
+body {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 100vh;
+    background: #222;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  #images {
+    display: none;
+  }

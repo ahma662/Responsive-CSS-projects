@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Form Results — Saved Submissions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.4;
+        }
+
+        h1 {
+            color: #2c7;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        .controls {
+            margin-top: 12px;
+            gap: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #888;
+            cursor: pointer;
+        }
+
+        .danger {
+            background: #fdd;
+        }
+
+        .ok {
+            background: #dfd;
+        }
+
+        pre {
+            background: #f7f7f7;
+            padding: 8px;
+            border-radius: 6px;
+            overflow: auto;
+        }
+
+        .small {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Form Submissions</h1>
+    <p class="small">Yeh page form data ko <strong>localStorage</strong> mein save karta hai. Form se submit karne ke
+        liye method="get" aur action="result.html" use karo.</p>
+
+    <div class="controls">
+        <button id="downloadJson">Download JSON</button>
+        <button id="downloadCsv">Download CSV</button>
+        <button id="showRaw">Show Raw Data</button>
+        <button id="clearAll" class="danger">Clear All</button>
+    </div>
+
+    <div id="message" style="margin-top:12px;"></div>
+
+    <div id="tableWrap"></div>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'formSubmissions_v1';
+
+            function readSubmissions() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    return raw ? JSON.parse(raw) : [];
+                } catch (e) {
+                    console.error('Could not parse submissions', e);
+                    return [];
+                }
+            }
+
+            function saveSubmissions(arr) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+            }
+
+            function getQueryData() {
+                // Read URL query params and return as object (if any param exists)
+                const params = new URLSearchParams(window.location.search);
+                const obj = {};
+                for (const [k, v] of params.entries()) {
+                    // If multiple inputs have same name, URLSearchParams will return last — handle simple case only
+                    obj[k] = v;
+                }
+                // If no keys, return null
+                return Object.keys(obj).length ? obj : null;
+            }
+
+            function addSubmission(dataObj) {
+                const subs = readSubmissions();
+                const timestamp = new Date().toISOString();
+                subs.push({ timestamp, data: dataObj });
+                saveSubmissions(subs);
+                return subs;
+            }
+
+            function renderTable() {
+                const subs = readSubmissions();
+                const wrap = document.getElementById('tableWrap');
+                if (!subs.length) {
+                    wrap.innerHTML = '<p><em>No saved submissions yet.</em></p>';
+                    return;
+                }
+
+                // Determine all unique field names across submissions to create table header
+                const allKeys = new Set();
+                subs.forEach(s => Object.keys(s.data).forEach(k => allKeys.add(k)));
+                const keys = Array.from(allKeys);
+
+                let html = '<table><thead><tr><th>#</th><th>Timestamp</th>';
+                keys.forEach(k => html += `<th>${escapeHtml(k)}</th>`);
+                html += '<th>Actions</th></tr></thead><tbody>';
+
+                subs.forEach((s, idx) => {
+                    html += `<tr><td>${idx + 1}</td><td>${escapeHtml(s.timestamp)}</td>`;
+                    keys.forEach(k => html += `<td>${escapeHtml(s.data[k] ?? '')}</td>`);
+                    html += `<td><button data-idx="${idx}" class="delBtn">Delete</button></td></tr>`;
+                });
+
+                html += '</tbody></table>';
+                wrap.innerHTML = html;
+
+                // attach delete handlers
+                wrap.querySelectorAll('.delBtn').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        const idx = Number(e.currentTarget.dataset.idx);
+                        const arr = readSubmissions();
+                        arr.splice(idx, 1);
+                        saveSubmissions(arr);
+                        renderTable();
+                    });
+                });
+            }
+
+            function escapeHtml(str) {
+                if (typeof str !== 'string') return '';
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+            }
+
+            function notify(msg, ok = true) {
+                const el = document.getElementById('message');
+                el.textContent = msg;
+                el.style.color = ok ? 'green' : 'crimson';
+                setTimeout(() => el.textContent = '', 4000);
+            }
+
+            function download(filename, content) {
+                const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 5000);
+            }
+
+            function toCSV(subs) {
+                if (!subs.length) return '';
+                // Get header keys
+                const allKeys = new Set();
+                subs.forEach(s => Object.keys(s.data).forEach(k => allKeys.add(k)));
+                const keys = ['timestamp', ...Array.from(allKeys)];
+                const rows = [keys.join(',')];
+                subs.forEach(s => {
+                    const row = [s.timestamp].concat(Array.from(allKeys).map(k => {
+                        const v = s.data[k] ?? '';
+                        // escape double quotes
+                        const safe = String(v).replace(/"/g, '""');
+                        // wrap if needed
+                        return `"${safe}"`;
+                    }));
+                    rows.push(row.join(','));
+                });
+                return rows.join('\n');
+            }
+
+            // MAIN: on load, check for query params & save them
+            window.addEventListener('DOMContentLoaded', () => {
+                const queryData = getQueryData();
+                if (queryData) {
+                    addSubmission(queryData);
+                    // Remove query string from URL (nice to avoid duplicate save on reload)
+                    if (window.history && history.replaceState) {
+                        const url = location.protocol + '//' + location.host + location.pathname;
+                        history.replaceState({}, document.title, url);
+                    }
+                    notify('Form data received and saved ✅');
+                }
+
+                // Render existing saved submissions
+                renderTable();
+
+                // Controls
+                document.getElementById('downloadJson').addEventListener('click', () => {
+                    const subs = readSubmissions();
+                    if (!subs.length) { notify('No data to download', false); return; }
+                    download('form_submissions.json', JSON.stringify(subs, null, 2));
+                });
+
+                document.getElementById('downloadCsv').addEventListener('click', () => {
+                    const subs = readSubmissions();
+                    if (!subs.length) { notify('No data to download', false); return; }
+                    download('form_submissions.csv', toCSV(subs));
+                });
+
+                let rawVisible = false;
+                document.getElementById('showRaw').addEventListener('click', () => {
+                    const wrap = document.getElementById('tableWrap');
+                    if (!rawVisible) {
+                        const subs = readSubmissions();
+                        const pre = document.createElement('pre');
+                        pre.id = 'rawPre';
+                        pre.textContent = JSON.stringify(subs, null, 2);
+                        wrap.parentNode.insertBefore(pre, wrap.nextSibling);
+                        document.getElementById('showRaw').textContent = 'Hide Raw Data';
+                        rawVisible = true;
+                    } else {
+                        const p = document.getElementById('rawPre');
+                        if (p) p.remove();
+                        document.getElementById('showRaw').textContent = 'Show Raw Data';
+                        rawVisible = false;
+                    }
+                });
+
+                document.getElementById('clearAll').addEventListener('click', () => {
+                    if (!confirm('Are you sure you want to delete all saved submissions?')) return;
+                    localStorage.removeItem(STORAGE_KEY);
+                    renderTable();
+                    notify('All submissions deleted', true);
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

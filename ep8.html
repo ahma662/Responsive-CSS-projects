@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-color: beige;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .user {
+            border: 2px solid;
+            border-radius: 4px;
+
+        }
+
+        .bnb {
+            display: inline-block;
+            margin-right: 35px;
+        }
+
+        .dnd {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Data Form</h1>
+    <form action="ep7.html" method="get" class="foam">
+        <div class="bnb">
+            <label for="username">Name:</label>
+            <input placeholder="username" type="text" name="username" required value="Ahmed">
+
+            <label for="password">Password:</label>
+            <input placeholder="password" type="password" required>
+
+            <label for="dob">Add DOB</label>
+            <input type="date">
+        </div>
+        <h3>Select the Gender</h3>
+        <div>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">Female</label>
+        </div>
+        <h3>Pick Your favourite Subject</h3>
+        <div>
+            <input type="checkbox" id="pink" value="color" required>
+            <label for="pink">Physics</label>
+        </div>
+        <div>
+            <input type="checkbox" id="orange" value="color" required>
+            <label for="orange">Chemistry</label>
+        </div>
+        <div>
+            <input type="checkbox" id="purple" value="color" required>
+            <label for="purple">Maths</label>
+        </div>
+        <h4>Enter Bio</h4>
+        <div>
+            <textarea maxlength="100" placeholder="Enter your bio">Enter The Bio</textarea>
+        </div>
+        <div>
+            <label>Attach Your Picture</label><br><br>
+            <input id="file" type="file" name="file">
+        </div><br>
+        <div class="ene">
+            <button>Submit</button>
+        </div>
+    </form>
+    
+</body>
+
+</html>

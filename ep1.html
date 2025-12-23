@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Website Header — Example</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --accent: #0b78e3;
+            --muted: #6b7280;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 6px 18px rgba(11, 120, 227, 0.08);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #f6f8fb;
+            color: #0f1724
+        }
+
+        /* Header */
+        .site-header {
+            background: linear-gradient(180deg, var(--glass), rgba(255, 255, 255, 0.85));
+            backdrop-filter: blur(6px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            /* change to fixed if you want it always on top */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #6dd3ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(11, 120, 227, 0.12);
+        }
+
+        .brand-text {
+            font-size: 16px;
+            font-weight: 600
+        }
+
+        /* Desktop nav */
+        nav.primary {
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        nav.primary a {
+            color: inherit;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-weight: 500
+        }
+
+        nav.primary a:hover {
+            background: rgba(243, 0, 0, 0.05)
+        }
+
+        .cta {
+            padding: 8px 14px;
+            background: var(--accent);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        /* Mobile hamburger */
+        .hamburger {
+            display: none;
+            background: none;
+            border: 0;
+            padding: 8px;
+            border-radius: 8px
+        }
+
+        .hamburger svg {
+            width: 22px;
+            height: 22px
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.08);
+            position: absolute;
+            right: 20px;
+            top: 72px;
+            min-width: 200px
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 10px 8px;
+            color: var(--muted);
+            text-decoration: none;
+            border-radius: 8px
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(11, 120, 227, 0.04);
+            color: inherit
+        }
+
+        /* Responsive */
+        @media (max-width:900px) {
+            nav.primary {
+                display: none
+            }
+
+            .hamburger {
+                display: inline-flex
+            }
+        }
+
+        /* Simple content demo */
+        main {
+            padding: 40px 20px
+        }
+
+        .hero {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 28px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: var(--shadow)
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="#">
+                <div class="logo">D</div>
+                <div class="brand-text">YourSite</div>
+            </a>
+
+            <nav class="primary" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#team">Our Team</a>
+                <a href="#about">About</a>
+                <a href="#contact">For Contact</a>
+                <a class="cta" href="#contact">Contact Us</a>
+            </nav>
+
+            <button class="hamburger" id="hambtn" aria-expanded="false" aria-controls="mobile-menu">
+                <!-- simple hamburger icon -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M3 7h18M3 12h18M3 17h18" />
+                </svg>
+            </button>
+
+            <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
+                <a href="#home" role="menuitem">Home</a>
+                <a href="#services" role="menuitem">Services</a>
+                <a href="#team" role="menuitem">Our Team</a>
+                <a href="#about" role="menuitem">About</a>
+                <a href="#contact" role="menuitem">For Contact</a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Header</h1>
+            <p>This is a small demo page that shows the responsive header. Resize the browser to see the hamburger menu
+                on small screens.</p>
+        </section>
+    </main>
+
+
+    <script>
+        const btn = document.getElementById('hambtn');
+        const menu = document.getElementById('mobile-menu');
+        let open = false;
+        btn.addEventListener('click', () => {
+            open = !open;
+            btn.setAttribute('aria-expanded', String(open));
+            menu.style.display = open ? 'block' : 'none';
+            menu.setAttribute('aria-hidden', String(!open));
+        });
+
+        // close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!open) return;
+            const target = e.target;
+            if (!menu.contains(target) && !btn.contains(target)) {
+                open = false; btn.setAttribute('aria-expanded', 'false'); menu.style.display = 'none'; menu.setAttribute('aria-hidden', 'true');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: cornsilk;
+        }
+
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav {
+            display: inline-block;
+        }
+
+        .sst {
+            display: inline-block;
+            margin: 50px;
+        }
+
+        .pst {
+            display: inline-block;
+            margin: 50px;
+        }
+
+        .kst {
+            display: inline-block;
+            margin: 50px;
+        }
+        .headi{
+            background-color: antiquewhite;
+        }
+        .start{
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            left: 600px;
+            top:70px
+        }
+        .mid{
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            left: 600px;
+            top:300px
+        }
+        .end{
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            left: 600px;
+            top:600px
+        }
+        .sect{
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            left: 600px;
+            top:500px
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        
+        <div class="headi">
+        <h1>Semantic Tags</h1>
+        </div><br>
+        <div class="start">
+            <h2>Header</h2>
+        </div>
+        <nav>
+            <a href="/" class="sst">Home</a>
+            <a href="/about" class="pst">About</a>
+            <a href="/contact" class="kst">Contact</a>
+        </nav>
+    </header>
+<hr>
+    <main>
+
+        <article>
+            <div class="mid">
+                <h2>Main Content Area</h2>
+            </div>
+            <p>Content here...</p>
+            <figure>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcRhbCbcO48OeHDzJvC2Hr3uch4ZUTSZJbrg&s"
+                    alt="Description">
+                <figcaption>Image caption</figcaption>
+            </figure>
+        </article>
+    </main>
+<hr>
+<section>
+    <div class="sect">
+        <h2>Main Content Area</h2>
+    </div>
+    <h2>Home</h2>
+    <p>Meet our experienced professionals...</p>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa9qlyZAguSX-8mj8fdT98nD9_DMifxMy75Q&s">
+    <p>Section is use to differentiate between different pages like home,, about etc</p>
+</section>
+<hr>
+<br>
+    <footer>
+        <div class="end"><h2>Footer</h2></div>
+        <p>&copy; 2025 My Website</p>
+        <p>
+            All kinds of rights are reserved
+        </p>
+    </footer>
+</body>
+
+</html>

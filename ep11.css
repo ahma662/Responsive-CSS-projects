@@ -1,0 +1,338 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.html {
+    font-size: 10px;
+}
+
+:root {
+    --toxic_color: hsl(256, 67%, 59%);
+    --font-family: "DM Sans", sans-serif;
+    --poison-color: hsl(39, 100%, 71%);
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 250px);
+    gap: 25px;
+    width: 75%;
+    max-width: 1200px;
+    margin: 100px;
+    grid-template-areas:
+        "box1 box2 box2 box3"
+        "box6 box4 box5 box3"
+        "box6 box7 box8 box8";
+}
+
+.card1 {
+    grid-area: box1;
+    background-color: hsl(31, 66%, 93%);
+}
+
+.card2 {
+    grid-area: box2;
+    background: var(--toxic_color);
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.card3 {
+    grid-area: box3;
+    background-color: hsl(254, 88%, 90%);
+}
+
+.card4 {
+    grid-area: box4;
+    background-color: hsl(0, 0%, 100%);
+}
+
+.card5 {
+    grid-area: box5;
+    background: var(--poison-color);
+}
+
+.card6 {
+    grid-area: box6;
+    background: var(--poison-color);
+}
+
+.card7 {
+    grid-area: box7;
+    background: hsl(0, 0%, 100%);
+}
+
+.card8 {
+    grid-area: box8;
+    background: var(--toxic_color);
+    color: white;
+}
+
+.card {
+    display: flex;
+    border-radius: 0.5rem;
+    box-shadow: 0 2vh 1vh  rgb(168, 165, 165);
+}
+
+.card1 {
+    padding-left: 0.3rem;
+    padding-top: 2.9rem;
+    padding-bottom: 2rem;
+    height: 100%;
+    max-height: max-content;
+
+}
+
+.card2 {
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.c-1 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 1.8rem;
+    padding: 1rem;
+    align-self: flex-start;
+    /* padding-top: 5rem; */
+}
+
+.spn0 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--toxic_color);
+}
+
+.img1 {
+    max-width: fit-content;
+    width: 100%;
+    margin-top: 1.3rem;
+}
+
+.c-2 {
+    font-family: var(--font-family);
+    font-size: 4.9ch;
+    line-height: 2.9rem;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.spn1 {
+    color: var(--poison-color);
+}
+
+.spn2 {
+    font-style: italic;
+    font-weight: 500;
+    padding-right: rem;
+}
+
+.card2 {
+    display: block;
+}
+
+.img2 {
+    max-width: fit-content;
+    flex-direction: column;
+    width: 35%;
+}
+
+small {
+    opacity: 0.8;
+}
+
+.card3 {
+    padding-left: 0.5rem;
+    padding-top: 1.8rem;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.c-3 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 1.6rem;
+    padding: 1rem;
+    padding-right: rem;
+    font-size: 3.3ch;
+}
+
+.img3 {
+    max-width: fit-content;
+    width: 150%;
+    height: min-content;
+    height: 54%;
+    padding-left: 0.8rem;
+}
+
+.para-1 {
+    font-family: var(--font-family);
+    font-size: 18px;
+    padding: 1rem;
+    line-height: 1.2rem;
+    opacity: 0.8;
+}
+
+.card4 {
+    padding-left: 1.2rem;
+    padding-top: 1.8rem;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.img4 {
+    max-width: fit-content;
+    width: 137%;
+    height: min-content;
+}
+
+.c-4 {
+    font-family: var(--font-family);
+    line-height: 1.7rem;
+    font-weight: 500;
+    padding-top: 1.5rem;
+}
+
+.card5 {
+    padding-left: 1.2rem;
+    padding-top: 1.8rem;
+    flex-direction: column;
+    padding-left: 1.3rem;
+    overflow: hidden;
+}
+
+.c-5 {
+    font-family: var(--font-family);
+    line-height: 1.7rem;
+    font-weight: 500;
+}
+
+.img5 {
+    max-width: fit-content;
+    width: 90%;
+    height: max-content;
+    padding-top: 1.7rem;
+    height: 100%;
+}
+
+.card7 {
+    max-height: max-content;
+    height: 100%;
+    padding: 1.3rem;
+    flex-direction: column;
+    padding-top: 0.8rem;
+}
+
+.c-7 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 3rem;
+}
+
+.para-2 {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.img7 {
+    max-width: fit-content;
+    width: 80%;
+    height: max-content;
+    padding-top: 1.7rem;
+}
+
+.card8 {
+    padding: 1.2rem;
+    max-height: max-content;
+    height: 65%;
+}
+
+.c-8 {
+    font-family: var(--font-family);
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.7rem;
+    padding-left: 1rem;
+    align-self: center;
+}
+
+.card6 {
+    max-height: fit-content;
+    height: 100%;
+    flex-direction: column;
+    margin-top: 6rem;
+
+}
+
+.c-6 {
+    font-family: var(--font-family);
+    font-weight: 400;
+    padding: 1.5rem;
+    font-size: 2.4rem;
+    padding-right: 2.5rem;
+    line-height: 2rem;
+}
+
+.img6 {
+    max-width: fit-content;
+    width: 80%;
+    height: 42.4%;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 2rem;
+        grid-template-areas:
+            "box2"
+            "box4"
+            "box5"
+            "box3"
+            "box8"
+            "box7"
+            "box1"
+            "box6";
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    .card {
+        height: auto;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        gap: 2rem;
+        grid-template-areas:
+            "box1 box2"
+            "box3 box5"
+            "box4 box6"
+            "box7 box8";
+        width: 85%;
+        margin: 3rem auto;
+    }
+
+    .card {
+        height: auto;
+    }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarship Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fcfcfc;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 120vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: beige;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 70px 50px rgba(91, 2, 2, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #525050;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #684d4d;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .gender-group, 
+    .subject-group {
+      margin-bottom: 15px;
+    }
+
+    .gender-group label,
+    .subject-group label {
+      font-weight: normal;
+      margin-right: 10px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .file-input {
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #246b45;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h1>Data Form</h1>
+    <form action="result.html" method="get">
+
+      <!-- Name -->
+      <label for="name">Name:</label>
+      <input placeholder="Enter your name" type="text" name="name" id="name" required>
+
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input placeholder="Enter password" type="password" name="password" id="password" required>
+
+      <!-- DOB -->
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" id="dob" required>
+
+      <!-- Gender -->
+      <div class="gender-group">
+        <label>Select Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female">Female</label>
+      </div>
+
+      <!-- Subjects -->
+      <div class="subject-group">
+        <label>Pick Your Favourite Subjects:</label>
+        <input type="checkbox" id="physics" name="subject" value="Physics">
+        <label for="physics">Physics</label>
+
+        <input type="checkbox" id="chemistry" name="subject" value="Chemistry">
+        <label for="chemistry">Chemistry</label>
+
+        <input type="checkbox" id="maths" name="subject" value="Maths">
+        <label for="maths">Maths</label>
+      </div>
+
+      <!-- Bio -->
+      <label for="bio">Enter Bio:</label>
+      <textarea id="bio" name="bio" maxlength="100" placeholder="Write something about yourself..."></textarea>
+
+      <!-- File -->
+      <div class="file-input">
+        <label for="file">Attach Your Picture:</label>
+        <input id="file" type="file" name="file">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>

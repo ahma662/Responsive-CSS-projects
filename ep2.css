@@ -1,0 +1,120 @@
+body{
+    background-color: antiquewhite;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container{
+      border: 2px solid black;
+      display: flex;
+      height: 300px;
+      width: 600px;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 350px;
+      margin-left: 350px;
+      justify-content: space-around;
+
+}
+.box1{
+    background-color: aqua;
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    flex-wrap: wrap;
+}
+.box2{
+    background-color: brown;
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+.box3{
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+}
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Q12VzuNm_xEKGoL7ChO8DoaFabNpo9yAyw&s);
+    background-size: cover;
+    background-clip: text;
+    color: transparent;
+    animation: animate 3s linear infinite;
+}
+@keyframes animate{
+    to{
+background-position-x:-500px;
+    }
+}
+/*nextpart*/
+
+.contain{
+    border: 2px solid black;
+    display: flex;
+    height: 30;
+    width: 45%;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 350px;
+    margin-left: 350px;
+    justify-content: center;
+    gap: 20px;
+}
+.bom1{
+  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  flex-shrink: 1;
+}
+.bom2{
+  background-color: brown;
+  height: 100px;
+  width: 100px;
+  flex-grow: 1;
+  border: 2px solid black;
+/
+}
+.bom3{
+  background-color: yellow;
+  height: 100px;
+  width: 100px;
+  flex-grow: 2;
+  border: 2px solid black;
+}
+h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cmw{
+    display: flex;
+    justify-content: center;
+}
+.d1{
+    background-color: beige;
+    border: 2px solid black;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.d2{
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+.bmw{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button{
+    flex-basis: 30%;
+    background-color: aqua;
+}

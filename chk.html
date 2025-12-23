@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Example</title>
+
+  <style>
+    /* SVG styling */
+    svg {
+      width: 150px;
+      height: 150px;
+      display: block;
+      margin: 50px auto;
+      cursor: pointer;
+    }
+
+    circle {
+      fill: none;
+      stroke: #3498db;
+      stroke-width: 8;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      animation: drawCircle 1s ease forwards;
+    }
+
+    path {
+      fill: none;
+      stroke: #2ecc71;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: drawCheck 1s ease forwards 1.8s;
+      transition: stroke 0.3s;
+    }
+
+    svg:hover path {
+      stroke: #27ae60;
+    }
+
+    /* Animations */
+    @keyframes drawCircle {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes drawCheck {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: aliceblue;
+        height: 200px;
+    }
+
+    table tr.total td {
+  background: #f0f4f8;
+  border: 2px solid black;
+  font-weight: bold;
+}
+table td:nth-child(3) {
+  background: rgba(0,0,0,0.03);
+}
+  </style>
+</head>
+
+<body>
+  <svg viewBox="0 0 100 100" role="img" aria-labelledby="checkTitle">
+    <title id="checkTitle">Success Checkmark</title>
+
+    <!-- Outer circle -->
+    <circle cx="50" cy="50" r="45" />
+
+    <!-- Checkmark path -->
+    <path d="M30 52 L45 67 C46 68 48 68 49 67 L70 40" />
+  </svg>
+  <div>
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Apples</td><td>4</td><td>$2</td></tr>
+      <tr><td>Oranges</td><td>6</td><td>$3</td></tr>
+      <tr class="total"><td colspan="2">Total</td><td>$5</td></tr>
+    </tbody>
+  </table>
+  </div>
+</body>
+</html>

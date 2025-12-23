@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Toggle</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* :root {
+      --primary-color: white;
+      --secondary-color: black;
+    } */
+
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color-scheme: light dark;
+      background-color: light-dark(#cdcdcd, #22345a);
+      transition: background-color 0.4s ease;
+    }
+
+    .theme-toggle {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, #007bff, #00d4ff);
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2rem;
+      border: none;
+      cursor: pointer;
+      font-family: sans-serif;
+      box-shadow: 0 1vh 4vh rgba(13, 16, 16, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    /* ✅ When checkbox is checked, dark mode background applies */
+    .container:has(#themeSwitch:checked) {
+      background-color: #22345a;
+      color: white;
+    }
+ .container:has(#themeSwitch:checked) h1{
+    font: 900;
+    box-shadow: 0 1vh 4vh rgb(rgb(87, 77, 77), rgb(0, 0, 0), rgb(33, 33, 70));
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: linear-gradient(140deg , pink, red, blue);
+ }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <label>
+      <input id="themeSwitch" type="checkbox" hidden>
+      <span class="theme-toggle">Toggle Theme</span>
+    </label>
+    <h1>Hello World</h1>
+  </div>
+</body>
+</html>

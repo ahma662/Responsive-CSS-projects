@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body {
+            background: #e3f2fd;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .weather-app {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        #result {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weather-app">
+        <h2>Weather App</h2>
+
+        <input type="text" id="city" required placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+        try{
+        const apiKey = '6ff22bfda53d5915b2ee12d96a35b979';
+        const result = document.getElementById('result');
+        function getWeather() {
+            const city = document.getElementById('city').value;
+            if (city === "") {
+                alert("Fill this Input Field!");
+                return;
+            }
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+            fetch(url)
+
+                .then(response => response.json())
+
+                .then(data => {
+                    if (data.cod === "404") {
+                        result.innerHTML = "City Not Found!"
+                        return;
+                    }
+                    result.innerHTML = `
+      <h3>${data.name}</h3>
+      <p>Temperature: ${data.main.temp}°C</p>
+      <p>Precipitation: ${data.weather[0].main}</p>
+    `;
+                })
+                .catch(errors => {
+                    result.innerHTML = "Error fetching data";
+                });
+        }
+    }catch(e){
+        console.log(e)
+    }
+    </script>
+</body>
+
+</html>

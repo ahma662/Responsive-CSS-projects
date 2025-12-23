@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      font-size: 20px;
+      color: aliceblue;
+      font-family: 'Mono', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #22345a;
+      overflow: hidden; /* hide animation overflow */
+      position: relative; /* allows layering */
+    }
+
+    /* ✅ Animated Box as BACKGROUND */
+    .box {
+      position: absolute;      /* take it out of layout */
+      top: 0;
+      left: 0;
+      height: 200px;
+      width: 200px;
+      border: 2px solid;
+      opacity: 0.3;
+      border: none;
+      border-radius: 20px;
+      animation: moveRotate 6s ease-in-out infinite alternate-reverse;
+      z-index: 0; 
+    }
+
+    @keyframes moveRotate {
+    0% {
+      transform: translateX(80vw) translateY(10vh) rotate(0deg) scale(1);
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+    }
+    25% {
+      background: linear-gradient(135deg, #ff007f, #ffcc00, white);
+    }
+    50% {
+      background: linear-gradient(135deg, #00ff99, #00bfff,pink);
+    }
+    75% {
+      background: linear-gradient(135deg, #ff6b6b, #f9d423);
+    }
+    100% {
+      transform: translateX(-5vw) translateY(60vh) rotate(360deg) scale(3);
+      background: linear-gradient(135deg, #b721ff, #21d4fd);
+      opacity: 0.2;
+    }
+  }
+
+    /* ✅ Foreground Content */
+    h1, p, .container {
+      position: relative;
+      z-index: 1; /* ensure above background */
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(4em, 8vw, 1em);
+      background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Q12VzuNm_xEKGoL7ChO8DoaFabNpo9yAyw&s);
+      background-size: cover;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation: animate 3s linear infinite;
+    }
+
+    @keyframes animate {
+      to {
+        background-position-x: -500px;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .container {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      background: linear-gradient(125deg, #007bff, #00d4ff);
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2rem;
+      margin-top: 10px;
+      cursor: pointer;
+      width: 30vw;
+      box-shadow: 0 1vh 4vh rgb(13, 16, 16);
+      font-size: 0.9rem;
+      border: none;
+      transition: all 0.3s ease;
+      
+    }
+
+      button:hover {
+      background: cadetblue;
+      transform: translateY(-2px);
+    }
+    .container2{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 200px;
+      width: 200px;
+      background-color: #050505;
+      border: 2px solid;
+      opacity: 0.3;
+      border-radius: 20px;
+      animation:  6s moveRotateColor ease-in-out infinite alternate-reverse;
+      z-index: 0; 
+    }
+    @keyframes moveRotateColor {
+        0%{
+            transform: translateX(60vw) translateY(60vw) rotate(0) scale(1);
+            background: linear-gradient(135deg,#00bfff, #f9d423, white);
+        }
+        25%{
+            background: linear-gradient(135deg,#22345a, #492939, white);
+        }
+        50%{
+            background: linear-gradient(135deg,#9f5bc1, #f9d423, white);
+        }
+        75%{
+            background: linear-gradient(135deg,#00bfff, #23f98e, rgb(125, 59, 59));
+        }
+        100%{
+            background: linear-gradient(135deg,#ff6200, #f9d423, rgb(137, 24, 24));
+            transform: translateX(12vw) translateY(10vh) rotate(360deg) scale(3);
+            opacity: 0.1;
+        }
+    }
+    @keyframes animate {
+      to {
+        background-position-x: -500px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container2"></div>
+  
+
+  <!-- Animated Background Box -->
+  <div class="box"></div>
+  <!-- Foreground Content -->
+  <div class="typewriter"></div>
+  <h1 id="heading" class="head">Welcome To Developers World</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+  <div id="cont" class="container">
+    <button id="btn" type="button">Get Started &#10132;</button>
+  </div>
+
+  <script src="ep1.js"></script>
+
+  <!-- <script>
+    const btn = document.getElementById("btn"); 
+
+    btn.addEventListener("click", () => {
+      btn.textContent = "Loading...";
+      btn.style.background = "linear-gradient(135deg, #00c6ff, #0072ff)";
+      setTimeout(() => {
+        btn.textContent = "Next →";
+        alert("You clicked the button! 🎉");
+      }, 1000);
+    });
+  </script> -->
+</body>
+</html>

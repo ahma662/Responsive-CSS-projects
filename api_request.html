@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: gray; min-height:100vh; display: flex; align-items: center; justify-content: center;">
+    <div>
+        <button id="open_bt" type="button" style="padding: 10px; border-radius: 5px; cursor: pointer;">Open Id</button>
+    </div>
+    <div id="card" style="display: none; background-color: beige;">
+        <div>
+            <img id="card_img" src="" alt="">
+        </div>
+        <div>
+            <h3 id="follow">Followers</h3>
+        </div>
+    </div>
+    <script>
+        const requestUrl = 'https://api.github.com/users/CodeWithHarry';
+        const Xhr = new XMLHttpRequest();
+        Xhr.open('GET', requestUrl);
+        Xhr.onreadystatechange = function () {
+            console.log(Xhr.readyState);
+            if (Xhr.readyState === 4) {
+
+                const data = JSON.parse(this.responseText);
+                console.log(typeof data);
+                console.log(data.followers);
+                const followers = data.followers;
+                const imageUrl = data.avatar_url;
+                img.src = imageUrl;
+                addFollow.textContent = `Followers : ${followers}`;
+            }
+        }
+        Xhr.send();
+
+        const card_head = document.getElementById('card');
+        const img = document.getElementById('card_img');
+        const addFollow = document.getElementById('follow');
+        const open_btn = document.getElementById('open_bt');
+          
+        open_btn.addEventListener('click', () => {
+            card_head.style.display =
+            card_head.style.display === 'none' ? 'block' : 'none';
+        })
+    </script>
+</body>
+
+</html>
